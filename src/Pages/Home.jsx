@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { exit } from "../_auth/Firebase";
-
-import { auth } from "../_auth/firebaseConfig";
-import App from "../App";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../_auth/firebaseConfig";
 
 const Home = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const checkAuth = async () => {
-      const user = auth.currentUser;
-      console.log(user);
-      setIsLoggedIn(!!user);
-    };
-    checkAuth();
-  }, []);
-  const handle = ()=>{
-    exit();
-    setIsLoggedIn(true);
-    navigate('/');
-  }
+    const user = auth.currentUser;
+    // console.log(!!user, user);
+    if (!!!user) {
+      navigate("/");
+    }
+    return () => {};
+  }, [navigate]);
+
+  const handle = async () => {
+    const xx = await exit();
+    if(xx==="signOut")navigate("/");
+  };
   return (
-    !isLoggedIn?
-    <div className=" bg-[#000000] h-screen">
-      <button className=" text-cyan-50 border border-white p-10" onClick={handle}>
-        Home
-      </button>
-    </div>:<div>Redirecting to home...</div>
+    <div className=" bg-[#000000] h-screen text-white">
+      <button onClick={handle}>home button for logout</button>
+    </div>
   );
 };
 

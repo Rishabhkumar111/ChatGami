@@ -3,10 +3,12 @@ import { auth } from "./firebaseConfig";
 
 
 const provider = new GoogleAuthProvider();
-const singIn = async () => {
-  signInWithPopup(auth, provider)
+
+const signIn = async () => {
+  return signInWithPopup(auth, provider)
     .then((result) => {
       console.log(result.user);
+      return result.user;
     })
     .catch((error) => {
       // Handle Errors here.
@@ -17,13 +19,13 @@ const singIn = async () => {
 };
 
 const exit = async function() {
-  signOut(auth)
+  return signOut(auth)
     .then(() => {
-      
+      return "signOut";
     })
     .catch((error) => {
       // An error happened.
     });
 };
 
-export { exit, singIn };
+export { exit, signIn };
