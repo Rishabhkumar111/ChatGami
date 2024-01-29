@@ -1,27 +1,28 @@
 import React, { useEffect } from "react";
-import { exit } from "../_auth/Firebase";
+import LeftBar from "./LeftBar";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../_auth/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import MessageArea from "./MessageArea";
 
 const Home = () => {
   const navigate = useNavigate();
-
   useEffect(() => {
-    const user = auth.currentUser;
-    // console.log(!!user, user);
-    if (!!!user) {
-      navigate("/");
-    }
-    return () => {};
-  }, [navigate]);
-
-  const handle = async () => {
-    const xx = await exit();
-    if(xx==="signOut")navigate("/");
-  };
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Authentication state changed:", user);
+      console.log(!!user, user);
+      if (!!!user) {
+        navigate("/");
+      }
+    });
+    return () => {
+      unsubscribe(); // Unsubscribe when the component unmounts
+    };
+  }, []);
   return (
-    <div className=" bg-[#000000] h-screen text-white">
-      <button onClick={handle}>home button for logout</button>
+    <div className=" bg-[#000000] h-screen text-white flex">
+      <LeftBar />
+      <MessageArea />
     </div>
   );
 };

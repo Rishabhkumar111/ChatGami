@@ -2,7 +2,7 @@ import React from 'react'
 
 const TopLeft = () => {
   return (
-    <div>TopLeft</div>
+    <div className=' h-[10vh] bg-green-300'>TopLeft</div>
   )
 }
 

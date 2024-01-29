@@ -2,7 +2,7 @@ import React from 'react'
 
 const MiddleLeft = () => {
   return (
-    <div>MiddleLeft</div>
+    <div className=' flex-grow bg-red-400'>MiddleLeft</div>
   )
 }
 
