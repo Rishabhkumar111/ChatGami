@@ -7,7 +7,6 @@ const provider = new GoogleAuthProvider();
 const signIn = async () => {
   return signInWithPopup(auth, provider)
     .then((result) => {
-      console.log(result.user);
       return result.user;
     })
     .catch((error) => {

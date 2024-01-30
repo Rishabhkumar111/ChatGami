@@ -1,6 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
+  isLoading:false,
   messages: [
     {
       id: 1,
@@ -27,9 +28,12 @@ export const messageSlice = createSlice({
       };
       state.messages.push(message);
     },
+    toddleLoading:(state, action)=>{
+      state.isLoading = action.payload.isLoading
+    }
     // addUserInfo
   },
 });
 
-export const { addMessage } = messageSlice.actions;
+export const { addMessage, toddleLoading } = messageSlice.actions;
 export default messageSlice.reducer;

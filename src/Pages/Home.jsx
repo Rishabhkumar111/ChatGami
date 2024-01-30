@@ -9,8 +9,6 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("Authentication state changed:", user);
-      console.log(!!user, user);
       if (!!!user) {
         navigate("/");
       }

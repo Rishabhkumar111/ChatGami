@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import LoadingScreen from "./LoadingScreen";
 
 const ChatArea = () => {
-  const message = useSelector(state => state.messages);
-
-  const [messages, setMessages] = useState(message);
+  const messages = useSelector(state => state.messages);
+  const loading = useSelector(state => state.isLoading);
 
   useEffect(() => {
-    // Scroll to the bottom when new messages are added
     const chatContainer = document.getElementById("chatContainer");
     chatContainer.scrollTop = chatContainer.scrollHeight;
   }, [messages]);
@@ -35,6 +34,7 @@ const ChatArea = () => {
           {message.sender === "me" && <div className="h-9 w-9 bg-blue-500 rounded-full mx-2 flex justify-center items-center text-lg">RK</div>}
         </div>
       ))}
+      {loading && <LoadingScreen />}
     </div>
   );
 };
