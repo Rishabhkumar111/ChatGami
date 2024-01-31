@@ -6,12 +6,16 @@ const initialState = {
     {
       id: 1,
       sender: "me",
-      text: "tredrtyd  ggvhgvjhgvv",
+      type:"text",
+      text: "Hello bro, how can i help you?",
+      img:null
     },
     {
         id:2,
         sender:"bot",
-        text:'hii  ggvhgvjhgvv'
+        type:"text",
+        text:'hii  ggvhgvjhgvv',
+        img:null
     }
   ],
 };
@@ -24,7 +28,9 @@ export const messageSlice = createSlice({
       const message = {
         id: nanoid(),
         sender: action.payload.sender,
+        type:action.payload.type,
         text: action.payload.text,
+        img:action.payload.img
       };
       state.messages.push(message);
     },
