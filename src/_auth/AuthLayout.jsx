@@ -9,13 +9,16 @@ import { signIn } from "./Firebase";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { addUserInfo } from "../app/slice";
 
 const AuthLayout = () => {
   const [isLoading, setisLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     const user = auth.currentUser;
-    // console.log(!!user, user);
     if (!!user) {
       navigate("/home");
     }
