@@ -1,11 +1,11 @@
 import React from 'react'
 
-const PreviewImg = ({setimgURL, imgURL, forSendingImg}) => {
+const PreviewImg = ({setimgURL, imgURL}) => {
   return (
     <div className="absolute right-0 top-0 w-[82vw] h-[88vh]">
           <div
-            className="bg-pink-500 absolute w-full h-full"
-            style={{ opacity: 0.6 }}
+            className="bg-[#8A8A8A] absolute w-full h-full"
+            style={{ opacity: 0.8 }}
           ></div>
           <div className="absolute w-full h-full flex items-center justify-center p-10">
             <button
