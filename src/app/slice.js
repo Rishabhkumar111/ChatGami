@@ -7,6 +7,7 @@ const initialState = {
     email: "",
     initials: "",
   },
+  isClickedfun:false,
   messages: [],
 };
 
@@ -24,8 +25,14 @@ export const messageSlice = createSlice({
       };
       state.messages.push(message);
     },
+    deleteMessage:(state, action)=>{
+      state.messages = []
+    },
     toddleLoading: (state, action) => {
-      state.isLoading = action.payload.isLoading;
+      state.isLoading = action.payload.isLoading
+    },
+    updateSink:(state, action)=>{
+      state.isClickedfun = action.payload.value;
     },
     addUserInfo: (state, action) => {
       const findInitials = (name) => {
@@ -49,5 +56,5 @@ export const messageSlice = createSlice({
   },
 });
 
-export const { addMessage, toddleLoading, addUserInfo } = messageSlice.actions;
+export const { addMessage, toddleLoading, addUserInfo, updateSink, deleteMessage } = messageSlice.actions;
 export default messageSlice.reducer;

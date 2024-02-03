@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
-import { addUserInfo } from "../app/slice";
+import { addUserInfo, deleteMessage, updateSink } from "../app/slice";
 
 const AuthLayout = () => {
   const [isLoading, setisLoading] = useState(false);
@@ -27,6 +27,8 @@ const AuthLayout = () => {
 
   const handleSignIn = async () => {
     setisLoading(true);
+    dispatch(deleteMessage());
+    dispatch(updateSink({value:false}));
     try {
       // throw new Error('Simulated sign-in error');
       const user = await signIn();

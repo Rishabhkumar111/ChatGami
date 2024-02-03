@@ -2,9 +2,9 @@ import React from 'react'
 import ChatArea from './ChatArea'
 import TextArea from './TextArea'
 
-const MessageArea = () => {
+const MessageArea = ({css}) => {
   return (
-    <div className='flex flex-col w-[82%] bg-[#000000'>
+    <div className={`flex flex-col bg-[#000000] ${css}`}>
         <ChatArea />
         <TextArea />
     </div>
