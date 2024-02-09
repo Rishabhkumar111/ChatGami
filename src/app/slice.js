@@ -9,12 +9,16 @@ const initialState = {
   },
   isClickedfun:false,
   messages: [],
+  activeTab:"home"
 };
 
 export const messageSlice = createSlice({
   name: "messages",
   initialState,
   reducers: {
+    changeTab:(state, action)=>{
+      state.activeTab = action.payload.activeTab
+    },
     addMessage: (state, action) => {
       const message = {
         id: nanoid(),
@@ -50,11 +54,10 @@ export const messageSlice = createSlice({
         email: action.payload.email,
         initials: findInitials(action.payload.name),
       };
-      console.log(info)
       state.userInfo = info;
     },
   },
 });
 
-export const { addMessage, toddleLoading, addUserInfo, updateSink, deleteMessage } = messageSlice.actions;
+export const { addMessage, toddleLoading, addUserInfo, updateSink, deleteMessage, changeTab } = messageSlice.actions;
 export default messageSlice.reducer;

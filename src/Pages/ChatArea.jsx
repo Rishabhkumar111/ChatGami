@@ -3,18 +3,12 @@ import { useSelector } from "react-redux";
 import LoadingScreen from "./LoadingScreen";
 import PreviewImg from "./PreviewImg";
 import { useDispatch } from "react-redux";
-import { addMessage } from "../app/slice";
-import { auth } from "../_auth/firebaseConfig";
 import ReactMarkdown from "react-markdown";
 
 const ChatArea = () => {
   const messages = useSelector((state) => state.messages);
   const loading = useSelector((state) => state.isLoading);
   const initilas = useSelector((state) => state.userInfo.initials);
-  // messages.map((message, index) =>
-  //   console.log(<ReactMarkdown>{message.text}</ReactMarkdown>)
-  // );
-  const name = auth.currentUser.displayName;
 
   const dispatch = useDispatch();
 
@@ -22,21 +16,10 @@ const ChatArea = () => {
 
   const handleClickForImg = (message) => {
     if (message.img) {
-      console.log(message.img);
       setimgURL(message.img);
     }
   };
 
-  useEffect(() => {
-    dispatch(
-      addMessage({
-        sender: "bot",
-        type: "text",
-        text: `Hi ${name}, How can i help you today?`,
-        img: null,
-      })
-    );
-  }, [name]);
 
   useEffect(() => {
     const chatContainer = document.getElementById("chatContainer");
@@ -48,7 +31,7 @@ const ChatArea = () => {
       {imgURL && <PreviewImg imgURL={imgURL} setimgURL={setimgURL} />}
       <div
         id="chatContainer"
-        className=" bg-black h-[88vh] overflow-y-auto p-4 flex-shrink-1 mt-2"
+        className=" bg-black h-[88vh] overflow-y-auto p-1 sm:p-4 flex-shrink-1 mt-2"
       >
         {messages.map((message, index) => (
           <div
@@ -66,14 +49,16 @@ const ChatArea = () => {
               </div>
             )}
             <span
-              className={`max-w-[70%] overflow-auto font-[200] tracking-wide text-left inline-block bg-[#3489BB] rounded-lg p-2.5 text-white ${
+              className={`max-w-[70%] overflow-auto font-[200] tracking-wide text-left inline-block bg-[#3489BB] rounded-lg ${
+                message.type === "text" ? "p-2.5" : "p-1"
+              } text-white ${
                 message.sender === "me" ? "bg-[#272A35]" : "bg-[#373E4E]"
               }`}
             >
               {message.type === "img" && (
                 <img
                   src={`${message.img}`}
-                  className="w-[20vw] h-[20vw] object-contain bg-[#000000]"
+                  className="sm:w-[20vw] sm:h-[20vw] h-[25vh] w-[25vh] object-contain bg-[#000000]"
                   alt="Image"
                 />
               )}

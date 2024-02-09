@@ -31,6 +31,7 @@ async function run(question) {
     return text;
   } catch (error) {
     console.error("Error in run:", error);
+    toast.error(error);
     throw error; 
   }
 }
@@ -68,6 +69,7 @@ async function runImage(question) {
     return text;
   } catch (error) {
     console.error("Error in run:", error);
+    toast.error(error);
     throw error;
   }
 }

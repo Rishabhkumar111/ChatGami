@@ -7,6 +7,7 @@ import Home from "./Pages/Home.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -22,5 +23,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
     <RouterProvider router={router} />
+    <ToastContainer />
   </Provider>
 );
