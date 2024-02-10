@@ -1,6 +1,6 @@
 import React from "react";
 import TopLeft from "./TopLeft.jsx";
-import MiddleLeft from "./middleLeft.jsx";
+import MiddleLeft from "./MiddleLeft.jsx";
 import BottomLeft from "./BottomLeft.jsx";
 
 const LeftBar = ({ css, handleButtonClick }) => {
